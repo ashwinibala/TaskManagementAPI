@@ -24,7 +24,7 @@ This is a Ruby on Rails-based Task Management API, which allows users to create,
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/task-management-api.git
+    git clone https://github.com/ashwinibala/TaskManagementAPI.git
     cd task-management-api
     ```
 
