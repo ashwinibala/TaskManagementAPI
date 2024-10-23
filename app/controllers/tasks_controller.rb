@@ -1,4 +1,6 @@
 class TasksController < ApplicationController
+  include AuthenticationHelper
+
   before_action :authenticate_request
   before_action :set_task, only: [ :show, :update, :destroy ]
   before_action :validate_index_params, only: [ :index ]
@@ -82,7 +84,7 @@ class TasksController < ApplicationController
 
   # task helper.
   def set_task
-    @task = Task.deleted.find_by(id: params[:id])
+    @task = Task.active.find_by(id: params[:id])
 
     unless @task
       render json: { error: "Task not found" }, status: :not_found
@@ -136,7 +138,12 @@ class TasksController < ApplicationController
 
   # Validation of params.
   def task_params
-    params.require(:task).permit(:title, :description, :status)
+    begin
+      params.require(:task).permit(:title, :description, :status)
+    rescue ActionController::ParameterMissing => e
+      render json: { error: "Parameter missing: #{e.param}" }, status: :unprocessable_entity
+      nil
+    end
   end
 end
 
