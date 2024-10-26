@@ -25,7 +25,7 @@ This is a Ruby on Rails-based Task Management API, which allows users to create,
 
     ```bash
     git clone https://github.com/ashwinibala/TaskManagementAPI.git
-    cd task-management-api
+    cd TaskManagementApi
     ```
 
 2. Install dependencies:
@@ -106,3 +106,22 @@ Example:
 
 ```bash
 GET /tasks?page=1&per_page=10
+```
+
+## Docker
+
+```bash
+rails secret
+```
+- environment:
+  - SECRET_KEY_BASE=the_generated_key_here
+```bash
+docker-compose run web bundle install
+docker-compose run web rails secret
+docker-compose up --build
+docker-compose exec web rails db:create db:migrate db:seed
+```
+
+## Swagger UI
+
+

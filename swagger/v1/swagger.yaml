@@ -3,9 +3,77 @@ openapi: 3.0.1
 info:
   title: API V1
   version: v1
-paths: {}
+paths:
+  "/tasks":
+    get:
+      summary: Retrieves all tasks
+      responses:
+        '200':
+          description: tasks found
+    post:
+      summary: Creates a task
+      parameters: []
+      responses:
+        '201':
+          description: task created
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                status:
+                  type: string
+                  enum:
+                  - Pending
+                  - In Progress
+                  - Completed
+                  default: Pending
+              required:
+              - title
+  "/tasks/{id}":
+    get:
+      summary: Retrieves a task
+      responses:
+        '200':
+          description: task found
+        '404':
+          description: task not found
+    put:
+      summary: Updates a task
+      parameters: []
+      responses:
+        '200':
+          description: task updated
+        '404':
+          description: task not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                status:
+                  type: string
+    delete:
+      summary: Deletes a task
+      responses:
+        '204':
+          description: task deleted
+        '404':
+          description: task not found
 servers:
-- url: https://{defaultHost}
+- url: https://localhost:8080
   variables:
     defaultHost:
       default: www.example.com
