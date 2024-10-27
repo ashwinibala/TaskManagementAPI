@@ -7603,3 +7603,458 @@ app/controllers/api/v1/tasks_controller.rb:153:in `block in render_error_respons
 app/controllers/api/v1/tasks_controller.rb:151:in `map'
 app/controllers/api/v1/tasks_controller.rb:151:in `render_error_response'
 app/controllers/api/v1/tasks_controller.rb:58:in `update'
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:39:41 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 7351ms (Views: 0.3ms | ActiveRecord: 133.9ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 16:40:41 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title 3", "description"=>"This is a description of my next task.", "priority"=>"test"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+Completed 500 Internal Server Error in 6376ms (ActiveRecord: 1.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `options' for an instance of Symbol):
+  
+app/controllers/api/v1/tasks_controller.rb:153:in `block in render_error_response'
+app/controllers/api/v1/tasks_controller.rb:151:in `each'
+app/controllers/api/v1/tasks_controller.rb:151:in `map'
+app/controllers/api/v1/tasks_controller.rb:151:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:118:in `validate_create_params'
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:15:27 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title 3", "description"=>"This is a description of my next task.", "priority"=>"test"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+Filter chain halted as :validate_create_params rendered or redirected
+Completed 422 Unprocessable Content in 131ms (Views: 0.2ms | ActiveRecord: 10.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:16:02 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title 2", "description"=>"This is a description of my next task.", "priority"=>"test"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+Filter chain halted as :validate_create_params rendered or redirected
+Completed 422 Unprocessable Content in 5ms (Views: 0.1ms | ActiveRecord: 0.3ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:16:08 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title", "description"=>"This is a description of my next task.", "priority"=>"test"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+Filter chain halted as :validate_create_params rendered or redirected
+Completed 422 Unprocessable Content in 8ms (Views: 0.2ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:16:18 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title", "description"=>"This is a description of my next task.", "priority"=>"Low"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:43:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+  [1m[36mTask Create (13.5ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "created_by", "deleted_by", "deleted_at", "created_at", "updated_at", "priority") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["title", "Title"], ["description", "This is a description of my next task."], ["status", "Backlog"], ["created_by", "admin"], ["deleted_by", nil], ["deleted_at", nil], ["created_at", "2024-10-27 22:16:18.316306"], ["updated_at", "2024-10-27 22:16:18.316306"], ["priority", "Low"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+Completed 201 Created in 40ms (Views: 1.0ms | ActiveRecord: 17.5ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:16:26 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title1", "description"=>"This is a description of my next task.", "priority"=>"Low"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:43:in `create'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+  [1m[36mTask Create (3.2ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "created_by", "deleted_by", "deleted_at", "created_at", "updated_at", "priority") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["title", "Title1"], ["description", "This is a description of my next task."], ["status", "Backlog"], ["created_by", "admin"], ["deleted_by", nil], ["deleted_at", nil], ["created_at", "2024-10-27 22:16:26.436020"], ["updated_at", "2024-10-27 22:16:26.436020"], ["priority", "Low"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+Completed 201 Created in 24ms (Views: 0.6ms | ActiveRecord: 7.4ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:16:51 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title1", "description"=>"This is a description of my next task.", "priority"=>"Low", "status"=>"Pending"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:43:in `create'
+Completed 422 Unprocessable Content in 17ms (Views: 0.5ms | ActiveRecord: 0.3ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:19:19 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title1", "description"=>"This is a description of my next task.", "priority"=>"Low", "status"=>"Pending"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:43:in `create'
+Completed 422 Unprocessable Content in 21249ms (Views: 0.3ms | ActiveRecord: 147.7ms (2 queries, 1 cached) | GC: 0.3ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:22:02 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title1", "description"=>"This is a description of my next task.", "priority"=>"Low", "status"=>"Pending"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:43:in `create'
+Completed 422 Unprocessable Content in 5945ms (Views: 0.4ms | ActiveRecord: 17.5ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:22:33 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title1", "description"=>"This is a description of my next task.", "priority"=>"test"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+Filter chain halted as :validate_create_params rendered or redirected
+Completed 422 Unprocessable Content in 2781ms (Views: 0.4ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:23:06 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title1", "description"=>"This is a description of my next task.", "priority"=>"test", "status"=>"invalid"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+Filter chain halted as :validate_create_params rendered or redirected
+Completed 422 Unprocessable Content in 2204ms (Views: 0.3ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:23:22 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title1", "description"=>"This is a description of my next task.", "priority"=>"Low", "status"=>"invalid"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:43:in `create'
+Completed 422 Unprocessable Content in 1583ms (Views: 0.4ms | ActiveRecord: 0.6ms (2 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:23:45 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title1", "description"=>"This is a description of my next task.", "priority"=>"inv", "status"=>"invalid"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+Filter chain halted as :validate_create_params rendered or redirected
+Completed 422 Unprocessable Content in 27960ms (Views: 0.3ms | ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:25:05 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title1", "description"=>"This is a description of my next task.", "priority"=>"inv", "status"=>"invalid"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+Filter chain halted as :validate_create_params rendered or redirected
+Completed 422 Unprocessable Content in 189ms (Views: 0.3ms | ActiveRecord: 107.0ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api-docs/index.html" for ::1 at 2024-10-27 18:27:55 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api-docs/swagger-ui-bundle.js" for ::1 at 2024-10-27 18:27:56 -0400
+Started GET "/api-docs/swagger-ui.css" for ::1 at 2024-10-27 18:27:56 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for ::1 at 2024-10-27 18:27:56 -0400
+Started GET "/api-docs/v1/swagger.yaml" for ::1 at 2024-10-27 18:27:56 -0400
+Started GET "/api-docs/favicon-32x32.png" for ::1 at 2024-10-27 18:27:56 -0400
+Started GET "/api-docs/index.html" for ::1 at 2024-10-27 18:31:12 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api-docs/swagger-ui.css" for ::1 at 2024-10-27 18:31:12 -0400
+Started GET "/api-docs/swagger-ui-bundle.js" for ::1 at 2024-10-27 18:31:12 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for ::1 at 2024-10-27 18:31:12 -0400
+Started GET "/api-docs/v1/swagger.yaml" for ::1 at 2024-10-27 18:31:12 -0400
+Started GET "/api-docs/favicon-32x32.png" for ::1 at 2024-10-27 18:31:12 -0400
+Started POST "/auth/login" for ::1 at 2024-10-27 18:31:23 -0400
+Processing by AuthenticationController#login as JSON
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "authentication"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:23:in `login'
+Completed 200 OK in 796ms (Views: 0.6ms | ActiveRecord: 33.8ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:32:23 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"title"=>"Test1", "description"=>"test test test ", "status"=>"Backlog", "task"=>{"title"=>"Test1", "description"=>"test test test ", "status"=>"Backlog"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:43:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+  [1m[36mTask Create (7.7ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "created_by", "deleted_by", "deleted_at", "created_at", "updated_at", "priority") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["title", "Test1"], ["description", "test test test "], ["status", "Backlog"], ["created_by", "admin"], ["deleted_by", nil], ["deleted_at", nil], ["created_at", "2024-10-27 22:32:23.828386"], ["updated_at", "2024-10-27 22:32:23.828386"], ["priority", "Low"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+Completed 201 Created in 56ms (Views: 0.9ms | ActiveRecord: 13.7ms (3 queries, 1 cached) | GC: 0.0ms)
+
+
+Started POST "/api/v1/tasks" for ::1 at 2024-10-27 18:32:38 -0400
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"title"=>"Test1", "description"=>"test test test ", "status"=>"test", "task"=>{"title"=>"Test1", "description"=>"test test test ", "status"=>"test"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+Filter chain halted as :validate_create_params rendered or redirected
+Completed 422 Unprocessable Content in 13ms (Views: 0.3ms | ActiveRecord: 0.7ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks" for ::1 at 2024-10-27 18:33:16 -0400
+Processing by Api::V1::TasksController#index as */*
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 406ms (Views: 10.7ms | ActiveRecord: 1.9ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/api/v1/tasks/%7Bid%7D" for ::1 at 2024-10-27 18:33:40 -0400
+Processing by Api::V1::TasksController#show as */*
+  Parameters: {"id"=>"{id}"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", nil], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Filter chain halted as :set_task rendered or redirected
+Completed 422 Unprocessable Content in 26ms (Views: 0.2ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api-docs/index.html" for ::1 at 2024-10-27 18:38:48 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/api-docs/swagger-ui.css" for ::1 at 2024-10-27 18:38:49 -0400
+Started GET "/api-docs/swagger-ui-bundle.js" for ::1 at 2024-10-27 18:38:49 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for ::1 at 2024-10-27 18:38:49 -0400
+Started GET "/api-docs/v1/swagger.yaml" for ::1 at 2024-10-27 18:38:50 -0400
+Started GET "/api-docs/favicon-32x32.png" for ::1 at 2024-10-27 18:38:50 -0400
+Started POST "/auth/login" for ::1 at 2024-10-27 18:39:01 -0400
+Processing by AuthenticationController#login as JSON
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "authentication"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:23:in `login'
+Completed 200 OK in 802ms (Views: 0.5ms | ActiveRecord: 28.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?page=1&per_page=10" for ::1 at 2024-10-27 18:39:25 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"page"=>"1", "per_page"=>"10"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (1.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 102ms (Views: 44.4ms | ActiveRecord: 12.5ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?statuses=Backlog%2CTodo&page=1&per_page=10" for ::1 at 2024-10-27 18:39:47 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"statuses"=>"Backlog,Todo", "page"=>"1", "per_page"=>"10"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."status" IN ($1, $2) AND "tasks"."deleted_at" IS NULL[0m  [["status", "Backlog"], ["status", "Todo"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (2.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."status" IN ($1, $2) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $3 OFFSET $4[0m  [["status", "Backlog"], ["status", "Todo"], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 47ms (Views: 18.8ms | ActiveRecord: 4.0ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?statuses=Backlog%2CTodo&search=title&page=1&per_page=10" for ::1 at 2024-10-27 18:40:06 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"statuses"=>"Backlog,Todo", "search"=>"title", "page"=>"1", "per_page"=>"10"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."status" IN ($1, $2) AND (title ILIKE $3) AND "tasks"."deleted_at" IS NULL[0m  [["status", "Backlog"], ["status", "Todo"], [nil, "%title%"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (1.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."status" IN ($1, $2) AND (title ILIKE $3) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $4 OFFSET $5[0m  [["status", "Backlog"], ["status", "Todo"], [nil, "%title%"], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 60ms (Views: 36.2ms | ActiveRecord: 3.1ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/api/v1/tasks/8" for ::1 at 2024-10-27 18:40:53 -0400
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"status"=>"Pending", "id"=>"8", "task"=>{"status"=>"Pending"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Filter chain halted as :validate_update_params rendered or redirected
+Completed 422 Unprocessable Content in 24ms (Views: 0.3ms | ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/api/v1/tasks/8" for ::1 at 2024-10-27 18:41:02 -0400
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"status"=>"Todo", "id"=>"8", "task"=>{"status"=>"Todo"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:55:in `update'
+  [1m[36mTask Update (18.8ms)[0m  [1m[33mUPDATE "tasks" SET "status" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["status", "Todo"], ["updated_at", "2024-10-27 22:41:02.609841"], ["id", 8]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:55:in `update'
+  [1m[36mTRANSACTION (2.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:55:in `update'
+Completed 200 OK in 86ms (Views: 10.2ms | ActiveRecord: 24.7ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/api/v1/tasks/8" for ::1 at 2024-10-27 18:41:26 -0400
+Processing by Api::V1::TasksController#destroy as */*
+  Parameters: {"id"=>"8"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:65:in `destroy'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTask Update (13.6ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_by" = $1, "deleted_at" = $2, "updated_at" = $3 WHERE "tasks"."id" = $4[0m  [["deleted_by", "admin"], ["deleted_at", "2024-10-27 22:41:26.786016"], ["updated_at", "2024-10-27 22:41:26.786428"], ["id", 8]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTRANSACTION (1.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+Completed 200 OK in 67ms (Views: 0.3ms | ActiveRecord: 17.7ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+Started DELETE "/api/v1/tasks/8" for ::1 at 2024-10-27 18:41:33 -0400
+Processing by Api::V1::TasksController#destroy as */*
+  Parameters: {"id"=>"8"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:65:in `destroy'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTask Update (11.8ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_at" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["deleted_at", "2024-10-27 22:41:33.707140"], ["updated_at", "2024-10-27 22:41:33.708719"], ["id", 8]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTRANSACTION (5.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+Completed 200 OK in 69ms (Views: 0.6ms | ActiveRecord: 19.0ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?statuses=Backlog%2CTodo&search=title&page=1&per_page=10" for ::1 at 2024-10-27 18:42:07 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"statuses"=>"Backlog,Todo", "search"=>"title", "page"=>"1", "per_page"=>"10"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."status" IN ($1, $2) AND (title ILIKE $3) AND "tasks"."deleted_at" IS NULL[0m  [["status", "Backlog"], ["status", "Todo"], [nil, "%title%"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (1.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."status" IN ($1, $2) AND (title ILIKE $3) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $4 OFFSET $5[0m  [["status", "Backlog"], ["status", "Todo"], [nil, "%title%"], ["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 30ms (Views: 8.6ms | ActiveRecord: 2.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/api/v1/tasks/8" for ::1 at 2024-10-27 18:44:10 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#destroy as */*
+  Parameters: {"id"=>"8"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:65:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTask Update (3.9ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_at" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["deleted_at", "2024-10-27 22:44:10.863601"], ["updated_at", "2024-10-27 22:44:10.864305"], ["id", 8]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTRANSACTION (7.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+Completed 200 OK in 225ms (Views: 0.3ms | ActiveRecord: 156.9ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+Started GET "/api-docs/index.html" for ::1 at 2024-10-27 18:44:14 -0400
+Started GET "/api-docs/swagger-ui.css" for ::1 at 2024-10-27 18:44:14 -0400
+Started GET "/api-docs/swagger-ui-bundle.js" for ::1 at 2024-10-27 18:44:14 -0400
+Started GET "/api-docs/swagger-ui-standalone-preset.js" for ::1 at 2024-10-27 18:44:14 -0400
+Started GET "/api-docs/v1/swagger.yaml" for ::1 at 2024-10-27 18:44:15 -0400
+Started GET "/api-docs/favicon-32x32.png" for ::1 at 2024-10-27 18:44:15 -0400
+Started POST "/auth/login" for ::1 at 2024-10-27 18:44:25 -0400
+Processing by AuthenticationController#login as JSON
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "authentication"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:23:in `login'
+Completed 200 OK in 408ms (Views: 0.3ms | ActiveRecord: 1.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/api/v1/tasks/8" for ::1 at 2024-10-27 18:44:58 -0400
+Processing by Api::V1::TasksController#destroy as */*
+  Parameters: {"id"=>"8"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:65:in `destroy'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTask Update (10.9ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_at" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["deleted_at", "2024-10-27 22:44:58.351410"], ["updated_at", "2024-10-27 22:44:58.351869"], ["id", 8]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+Completed 200 OK in 56ms (Views: 0.4ms | ActiveRecord: 13.8ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
+Started DELETE "/api/v1/tasks/8" for ::1 at 2024-10-27 18:45:03 -0400
+Processing by Api::V1::TasksController#destroy as */*
+  Parameters: {"id"=>"8"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:65:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTask Update (9.8ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_at" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["deleted_at", "2024-10-27 22:45:04.262026"], ["updated_at", "2024-10-27 22:45:04.262875"], ["id", 8]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+Completed 200 OK in 57ms (Views: 0.3ms | ActiveRecord: 17.6ms (4 queries, 1 cached) | GC: 0.0ms)
+
+
