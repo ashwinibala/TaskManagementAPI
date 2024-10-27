@@ -17,13 +17,13 @@ RSpec.describe 'Tasks API', type: :request do
         properties: {
           title: { type: :string },
           description: { type: :string },
-          status: { type: :string, enum: [ 'Pending', 'In Progress', 'Completed' ], default: 'Pending' }
+          status: { type: :string, enum: [ 'Backlog', 'Todo', 'InProgress', 'Completed', 'Cancelled' ], default: 'Backlog' }
         },
         required: [ 'title' ]
       }
 
       response '201', 'task created' do
-        let(:task) { { title: 'Sample Task', description: 'Task description', status: 'Pending' } }
+        let(:task) { { title: 'Sample Task', description: 'Task description', status: 'Backlog' } }
         run_test!
       end
 

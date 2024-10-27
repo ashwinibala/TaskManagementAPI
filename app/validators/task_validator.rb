@@ -1,10 +1,10 @@
-# app/validators/task_validator.rb
 class TaskValidator
   attr_reader :params
 
   def initialize(params)
     @params = params
   end
+
 
   def validate_index
     errors = {}
@@ -29,32 +29,27 @@ class TaskValidator
 
   def validate_create
     errors = {}
-
-    if params[:task].blank?
-      errors[:task] = "cannot be blank"
-    end
-
+    errors[:title] = [ "Title cannot be blank" ] if params[:task][:title].blank?
+    errors[:status] = [ "Status is invalid" ] unless valid_status?(params[:task][:status])
+    errors[:priority] = [ "Priority is invalid" ] unless valid_priority?(params[:task][:priority])
     errors
   end
 
   def validate_update
     errors = {}
+    # yet to add validation
+    errors
+  end
 
-    if params[:task].blank?
-      errors[:task] = "cannot be blank"
-    end
-
+  def validate_show
+    errors = {}
+    errors[:id] = [ "ID cannot be blank" ] if params[:id].blank?
     errors
   end
 
   def validate_destroy
     errors = {}
-
-    task = Task.active.find_by(id: params[:id])
-    unless task
-      errors[:task] = "Task not found or already deleted"
-    end
-
+    errors[:id] = [ "ID cannot be blank" ] if params[:id].blank?
     errors
   end
 
@@ -62,5 +57,13 @@ class TaskValidator
 
   def valid_number?(value)
     value.to_i.to_s == value.to_s && value.to_i > 0
+  end
+
+  def valid_status?(status)
+    %w[Backlog Todo InProgress Completed Cancelled].include?(status)
+  end
+
+  def valid_priority?(priority)
+    %w[Low Medium High].include?(priority)
   end
 end

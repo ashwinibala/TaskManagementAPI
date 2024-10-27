@@ -18,9 +18,10 @@ Rails.application.routes.draw do
   post "auth/register", to: "authentication#register"
   post "auth/login", to: "authentication#login"
 
-  resources :tasks do
-    member do
-      patch "undelete"
+  # Versioned API routes
+  namespace :api do
+    namespace :v1 do
+      resources :tasks, only: [ :index, :show, :create, :update, :destroy ]
     end
   end
 end
