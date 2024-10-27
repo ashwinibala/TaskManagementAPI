@@ -56,4 +56,4 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 
 # Ignore master key for decrypting credentials and more.
-
+/log/development.log
