@@ -1,9 +1,9 @@
 module Api
   module V1
     class TasksController < ApplicationController
-      include AuthenticationHelper
+      # include AuthenticationHelper
 
-      before_action :authenticate_request
+      # before_action :authenticate_request
       before_action :set_task, only: [ :show, :update, :destroy ]
       before_action :validate_index_params, only: [ :index ]
       before_action :validate_show_params, only: [ :show ]
