@@ -1,23 +1,47 @@
----
 openapi: 3.0.1
 info:
   title: API V1
   version: v1
 paths:
-  api/v1/tasks:
+  /api/v1/tasks:
     get:
       summary: Retrieves all tasks
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: statuses
+          in: query
+          description: Comma-separated list of task statuses to filter by (e.g., Backlog, Todo)
+          required: false
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: Search term for task titles
+          required: false
+          schema:
+            type: string
+        - name: page
+          in: query
+          description: Page number for pagination
+          required: false
+          schema:
+            type: integer
+            default: 1
+        - name: per_page
+          in: query
+          description: Number of tasks per page
+          required: false
+          schema:
+            type: integer
+            default: 10
       responses:
         '200':
           description: tasks found
     post:
       summary: Creates a task
-      parameters: []
-      responses:
-        '201':
-          description: task created
-        '422':
-          description: invalid request
+      security:
+        - BearerAuth: []
       requestBody:
         content:
           application/json:
@@ -31,17 +55,31 @@ paths:
                 status:
                   type: string
                   enum:
-                  - Backlog
-                  - Todo
-                  - InProgress
-                  - Completed
-                  - Cancelled
+                    - Backlog
+                    - Todo
+                    - InProgress
+                    - Completed
+                    - Cancelled
                   default: Backlog
               required:
-              - title
-  "/tasks/{id}":
+                - title
+      responses:
+        '201':
+          description: task created
+        '422':
+          description: invalid request
+  "/api/v1/tasks/{id}":
     get:
       summary: Retrieves a task
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the task to retrieve
+          schema:
+            type: integer
       responses:
         '200':
           description: task found
@@ -49,12 +87,15 @@ paths:
           description: task not found
     put:
       summary: Updates a task
-      parameters: []
-      responses:
-        '200':
-          description: task updated
-        '404':
-          description: task not found
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the task to update
+          schema:
+            type: integer
       requestBody:
         content:
           application/json:
@@ -67,15 +108,67 @@ paths:
                   type: string
                 status:
                   type: string
-    delete:
-      summary: Deletes a task
       responses:
-        '204':
-          description: task deleted
+        '200':
+          description: task updated
         '404':
           description: task not found
+    delete:
+      summary: Deletes a task
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID of the task to delete
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: task updated
+        '404':
+          description: task not found
+  /auth/login:
+    post:
+      summary: User login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: admin@example.com
+                password:
+                  type: string
+                  example: password123
+              required:
+                - email
+                - password
+      responses:
+        '200':
+          description: login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: "your_jwt_token_here"
+        '401':
+          description: invalid credentials
 servers:
-- url: https://localhost:8080
-  variables:
-    defaultHost:
-      default: www.example.com
+  - url: http://localhost:8080
+    variables:
+      defaultHost:
+        default: http://localhost:8080
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

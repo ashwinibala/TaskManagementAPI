@@ -45,6 +45,3 @@ class AuthenticationController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end
-
-
-# should handle refresh token

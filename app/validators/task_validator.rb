@@ -30,14 +30,15 @@ class TaskValidator
   def validate_create
     errors = {}
     errors[:title] = [ "Title cannot be blank" ] if params[:task][:title].blank?
-    errors[:status] = [ "Status is invalid" ] unless valid_status?(params[:task][:status])
-    errors[:priority] = [ "Priority is invalid" ] unless valid_priority?(params[:task][:priority])
+    errors[:status] = [ "Status is invalid" ] if params[:task][:status].present? && !valid_status?(params[:task][:status])
+    errors[:priority] = [ "Priority is invalid" ] if params[:task][:priority].present? && !valid_priority?(params[:task][:priority])
     errors
   end
 
   def validate_update
     errors = {}
-    # yet to add validation
+    errors[:status] = [ "Status is invalid" ] if params[:task][:status].present? && !valid_status?(params[:task][:status])
+    errors[:priority] = [ "Priority is invalid" ] if params[:task][:priority].present? && !valid_priority?(params[:task][:priority])
     errors
   end
 

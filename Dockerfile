@@ -12,12 +12,10 @@ RUN bundle install
 RUN apt-get update -qq && \
     apt-get install -y nodejs npm && \
     npm install -g yarn
-
-# Copy the rest of the application code
 COPY . .
 
 # Read JWT_SECRET if using Docker secrets
-RUN echo "JWT_SECRET=$(cat /run/secrets/jwt_secret)" >> /etc/environment  # If you're using secrets
+# RUN echo "JWT_SECRET=$(cat /run/secrets/jwt_secret)" >> /etc/environment  # If you're using secrets
 
 # Expose the application port
 EXPOSE 8080
