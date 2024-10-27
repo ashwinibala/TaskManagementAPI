@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   attr_reader :current_user
 
-  # before_action :authenticate_request
+  before_action :authenticate_request
 
   private
 

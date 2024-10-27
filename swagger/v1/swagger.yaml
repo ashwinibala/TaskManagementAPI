@@ -4,7 +4,7 @@ info:
   title: API V1
   version: v1
 paths:
-  api/v1/tasks:
+  /api/v1/tasks:
     get:
       summary: Retrieves all tasks
       responses:

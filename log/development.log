@@ -7134,3 +7134,472 @@ Processing by AuthenticationController#login as */*
 Can't verify CSRF token authenticity.
   [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
   ↳ app/controllers/authentication_controller.rb:23:in `login'
+Started POST "/auth/login" for 172.19.0.1 at 2024-10-27 19:49:21 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "authentication"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:23:in `login'
+Completed 200 OK in 698ms (Views: 0.4ms | ActiveRecord: 27.4ms (1 query, 0 cached) | GC: 2.3ms)
+
+
+Started GET "/api/v1/tasks?page=1&per_page=" for 172.19.0.1 at 2024-10-27 19:49:41 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (3.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 174ms (Views: 5.7ms | ActiveRecord: 6.1ms (3 queries, 0 cached) | GC: 41.2ms)
+
+
+Started POST "/api/v1/tasks" for 172.19.0.1 at 2024-10-27 19:50:32 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title 1", "description"=>"This is a description of my third task.", "priority"=>"Medium"}}
+Can't verify CSRF token authenticity.
+Completed 500 Internal Server Error in 60ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.7ms)
+
+
+  
+NameError (uninitialized constant ExceptionHandler::Unauthorized
+
+      rescue ExceptionHandler::Unauthorized => e
+                             ^^^^^^^^^^^^^^):
+
+Causes:
+NameError (uninitialized constant ExceptionHandler::Unauthorized
+
+      raise(ExceptionHandler::Unauthorized, "Invalid token")
+                            ^^^^^^^^^^^^^^)
+JWT::VerificationError (Signature verification failed)
+  
+app/controllers/application_controller.rb:17:in `rescue in authenticate_request'
+app/controllers/application_controller.rb:15:in `authenticate_request'
+Started POST "/api/v1/tasks" for 172.19.0.1 at 2024-10-27 19:51:08 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title 1", "description"=>"This is a description of my third task.", "priority"=>"Medium"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:43:in `create'
+  [1m[36mTRANSACTION (8.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+  [1m[36mTask Create (19.9ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "created_by", "deleted_by", "deleted_at", "created_at", "updated_at", "priority") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["title", "Title 1"], ["description", "This is a description of my third task."], ["status", "Backlog"], ["created_by", "admin"], ["deleted_by", nil], ["deleted_at", nil], ["created_at", "2024-10-27 19:51:09.178588"], ["updated_at", "2024-10-27 19:51:09.178588"], ["priority", "Medium"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+Completed 201 Created in 64ms (Views: 0.4ms | ActiveRecord: 34.5ms (3 queries, 1 cached) | GC: 1.9ms)
+
+
+Started POST "/api/v1/tasks" for 172.19.0.1 at 2024-10-27 19:51:44 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title 2", "description"=>"This is a description of my next task."}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:43:in `create'
+Completed 422 Unprocessable Content in 12ms (Views: 0.3ms | ActiveRecord: 0.3ms (2 queries, 1 cached) | GC: 0.5ms)
+
+
+Started POST "/api/v1/tasks" for 172.19.0.1 at 2024-10-27 19:54:51 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#create as */*
+  Parameters: {"task"=>{"title"=>"Title 2", "description"=>"This is a description of my next task."}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:43:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+  [1m[36mTask Create (5.4ms)[0m  [1m[32mINSERT INTO "tasks" ("title", "description", "status", "created_by", "deleted_by", "deleted_at", "created_at", "updated_at", "priority") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["title", "Title 2"], ["description", "This is a description of my next task."], ["status", "Backlog"], ["created_by", "admin"], ["deleted_by", nil], ["deleted_at", nil], ["created_at", "2024-10-27 19:54:52.916086"], ["updated_at", "2024-10-27 19:54:52.916086"], ["priority", "Low"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+  [1m[36mTRANSACTION (2.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:46:in `create'
+Completed 201 Created in 504ms (Views: 0.5ms | ActiveRecord: 46.0ms (3 queries, 1 cached) | GC: 35.9ms)
+
+
+Started PUT "/api/v1/tasks/7" for 172.19.0.1 at 2024-10-27 19:56:24 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 17ms (Views: 0.4ms | ActiveRecord: 0.7ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started PUT "/api/v1/tasks/7" for 172.19.0.1 at 2024-10-27 19:59:53 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 500 Internal Server Error in 595ms (ActiveRecord: 61.8ms (2 queries, 0 cached) | GC: 37.5ms)
+
+
+  
+NameError (undefined local variable or method `filtered_errors' for #<Api::V1::TasksController:0x0000000000e240>
+
+          errors: filtered_errors.map { |field, message| { field: field, message: message } }
+                  ^^^^^^^^^^^^^^^
+Did you mean?  field_errors):
+  
+app/controllers/api/v1/tasks_controller.rb:154:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:58:in `update'
+Started PUT "/api/v1/tasks/7" for 172.19.0.1 at 2024-10-27 20:02:33 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 446ms (Views: 0.6ms | ActiveRecord: 37.9ms (2 queries, 0 cached) | GC: 13.3ms)
+
+
+Started PUT "/api/v1/tasks/7" for 172.19.0.1 at 2024-10-27 20:07:43 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (1.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 537ms (Views: 1.3ms | ActiveRecord: 83.8ms (2 queries, 0 cached) | GC: 67.9ms)
+
+
+Started PUT "/api/v1/tasks/7" for 172.19.0.1 at 2024-10-27 20:09:40 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 508ms (Views: 0.5ms | ActiveRecord: 40.3ms (2 queries, 0 cached) | GC: 24.1ms)
+
+
+Started PUT "/api/v1/tasks/7" for 172.19.0.1 at 2024-10-27 20:10:52 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 8443ms (Views: 1.6ms | ActiveRecord: 165.2ms (2 queries, 0 cached) | GC: 168.9ms)
+
+
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:12:00 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (3.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 59905ms (Views: 1.1ms | ActiveRecord: 151.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:15:21 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 500 Internal Server Error in 248ms (ActiveRecord: 129.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `dig' for nil):
+  
+app/controllers/api/v1/tasks_controller.rb:160:in `block in render_error_response'
+app/controllers/api/v1/tasks_controller.rb:156:in `map'
+app/controllers/api/v1/tasks_controller.rb:156:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:58:in `update'
+Started POST "/auth/login" for ::1 at 2024-10-27 16:15:36 -0400
+Processing by AuthenticationController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "authentication"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:23:in `login'
+Completed 200 OK in 229ms (Views: 0.3ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:15:54 -0400
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.0ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `dig' for nil):
+  
+app/controllers/api/v1/tasks_controller.rb:160:in `block in render_error_response'
+app/controllers/api/v1/tasks_controller.rb:156:in `map'
+app/controllers/api/v1/tasks_controller.rb:156:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:58:in `update'
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:17:22 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 500 Internal Server Error in 212ms (ActiveRecord: 123.7ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil):
+  
+app/controllers/api/v1/tasks_controller.rb:157:in `block in render_error_response'
+app/controllers/api/v1/tasks_controller.rb:156:in `map'
+app/controllers/api/v1/tasks_controller.rb:156:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:58:in `update'
+Started GET "/api/v1/tasks/7" for ::1 at 2024-10-27 16:18:23 -0400
+Processing by Api::V1::TasksController#show as */*
+  Parameters: {"id"=>"7"}
+Completed 500 Internal Server Error in 241ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NameError (uninitialized constant ExceptionHandler::Unauthorized):
+
+Causes:
+NameError (uninitialized constant ExceptionHandler::Unauthorized)
+JWT::VerificationError (Signature verification failed)
+  
+app/controllers/application_controller.rb:17:in `rescue in authenticate_request'
+app/controllers/application_controller.rb:15:in `authenticate_request'
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:18:47 -0400
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for nil):
+  
+app/controllers/api/v1/tasks_controller.rb:157:in `block in render_error_response'
+app/controllers/api/v1/tasks_controller.rb:156:in `map'
+app/controllers/api/v1/tasks_controller.rb:156:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:58:in `update'
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:20:05 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 224ms (Views: 1.8ms | ActiveRecord: 128.9ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:22:27 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 500 Internal Server Error in 186ms (ActiveRecord: 100.8ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `dig' for nil):
+  
+app/controllers/api/v1/tasks_controller.rb:159:in `block in render_error_response'
+app/controllers/api/v1/tasks_controller.rb:156:in `map'
+app/controllers/api/v1/tasks_controller.rb:156:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:58:in `update'
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:23:36 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 500 Internal Server Error in 75010ms (ActiveRecord: 108.9ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+  
+NoMethodError (undefined method `dig' for nil):
+  
+app/controllers/api/v1/tasks_controller.rb:159:in `block in render_error_response'
+app/controllers/api/v1/tasks_controller.rb:156:in `map'
+app/controllers/api/v1/tasks_controller.rb:156:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:58:in `update'
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:25:04 -0400
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 500 Internal Server Error in 172500ms (ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+  
+NoMethodError (undefined method `dig' for nil):
+  
+app/controllers/api/v1/tasks_controller.rb:159:in `block in render_error_response'
+app/controllers/api/v1/tasks_controller.rb:156:in `map'
+app/controllers/api/v1/tasks_controller.rb:156:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:58:in `update'
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:28:11 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 192ms (Views: 1.6ms | ActiveRecord: 133.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:29:56 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.0ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 235ms (Views: 0.3ms | ActiveRecord: 141.9ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:31:20 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 248ms (Views: 0.6ms | ActiveRecord: 138.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:34:14 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.7ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 249ms (Views: 0.3ms | ActiveRecord: 122.1ms (2 queries, 0 cached) | GC: 0.2ms)
+
+
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:34:50 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 261ms (Views: 0.3ms | ActiveRecord: 154.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:35:24 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.1ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 422 Unprocessable Content in 53211ms (Views: 0.4ms | ActiveRecord: 129.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:36:30 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.0ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 500 Internal Server Error in 3609ms (ActiveRecord: 132.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for an instance of ActiveModel::Error):
+  
+app/controllers/api/v1/tasks_controller.rb:153:in `block in render_error_response'
+app/controllers/api/v1/tasks_controller.rb:151:in `map'
+app/controllers/api/v1/tasks_controller.rb:151:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:58:in `update'
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 16:36:55 -0400
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Pending"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 500 Internal Server Error in 153173ms (ActiveRecord: 0.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+  
+NoMethodError (undefined method `[]' for an instance of ActiveModel::Error):
+  
+app/controllers/api/v1/tasks_controller.rb:153:in `block in render_error_response'
+app/controllers/api/v1/tasks_controller.rb:151:in `map'
+app/controllers/api/v1/tasks_controller.rb:151:in `render_error_response'
+app/controllers/api/v1/tasks_controller.rb:58:in `update'
