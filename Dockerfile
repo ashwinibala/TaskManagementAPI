@@ -5,7 +5,7 @@ FROM ruby:3.1
 WORKDIR /app
 
 # Install dependencies
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock ./ 
 RUN bundle install
 
 # Install Node.js and Yarn
@@ -15,6 +15,9 @@ RUN apt-get update -qq && \
 
 # Copy the rest of the application code
 COPY . .
+
+# Read JWT_SECRET if using Docker secrets
+RUN echo "JWT_SECRET=$(cat /run/secrets/jwt_secret)" >> /etc/environment  # If you're using secrets
 
 # Expose the application port
 EXPOSE 8080

@@ -4,7 +4,7 @@ info:
   title: API V1
   version: v1
 paths:
-  "/tasks":
+  api/v1/tasks:
     get:
       summary: Retrieves all tasks
       responses:
@@ -31,10 +31,12 @@ paths:
                 status:
                   type: string
                   enum:
-                  - Pending
-                  - In Progress
+                  - Backlog
+                  - Todo
+                  - InProgress
                   - Completed
-                  default: Pending
+                  - Cancelled
+                  default: Backlog
               required:
               - title
   "/tasks/{id}":

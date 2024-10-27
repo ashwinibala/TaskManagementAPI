@@ -6713,3 +6713,413 @@ Filter chain halted as :validate_update_params rendered or redirected
 Completed 422 Unprocessable Content in 44ms (Views: 0.6ms | ActiveRecord: 2.0ms (2 queries, 0 cached) | GC: 0.0ms)
 
 
+Started PUT "/api/v1/tasks/7" for ::1 at 2024-10-27 01:17:12 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#update as */*
+  Parameters: {"task"=>{"status"=>"Completed"}, "id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:55:in `update'
+  [1m[36mTask Update (5.9ms)[0m  [1m[33mUPDATE "tasks" SET "status" = $1, "updated_at" = $2 WHERE "tasks"."id" = $3[0m  [["status", "Completed"], ["updated_at", "2024-10-27 05:17:12.713292"], ["id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:55:in `update'
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:55:in `update'
+Completed 200 OK in 267ms (Views: 0.7ms | ActiveRecord: 148.1ms (3 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/api/v1/tasks/3" for ::1 at 2024-10-27 01:17:30 -0400
+Processing by Api::V1::TasksController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (1.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+Completed 200 OK in 46ms (Views: 4.9ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/api/v1tasks/7" for ::1 at 2024-10-27 01:18:19 -0400
+  
+ActionController::RoutingError (No route matches [DELETE] "/api/v1tasks/7"):
+  
+Started DELETE "/api/v1/tasks/7" for ::1 at 2024-10-27 01:19:03 -0400
+Processing by Api::V1::TasksController#destroy as */*
+  Parameters: {"id"=>"7"}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:88:in `set_task'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:65:in `destroy'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTask Update (31.7ms)[0m  [1m[33mUPDATE "tasks" SET "deleted_by" = $1, "deleted_at" = $2, "updated_at" = $3 WHERE "tasks"."id" = $4[0m  [["deleted_by", "admin"], ["deleted_at", "2024-10-27 05:19:05.160418"], ["updated_at", "2024-10-27 05:19:05.161377"], ["id", 7]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:66:in `destroy'
+Completed 200 OK in 130ms (Views: 0.4ms | ActiveRecord: 43.5ms (4 queries, 1 cached) | GC: 0.2ms)
+
+
+Started POST "/auth/login" for ::1 at 2024-10-27 11:10:34 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "authentication"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:23:in `login'
+Completed 200 OK in 402ms (Views: 0.2ms | ActiveRecord: 28.1ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?page=1&per_page=" for ::1 at 2024-10-27 11:10:49 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 47ms (Views: 10.2ms | ActiveRecord: 5.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?search=%22Todo,InProgress%22&page=1&per_page=" for ::1 at 2024-10-27 11:11:52 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"search"=>"\"Todo,InProgress\"", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (9.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL[0m  [[nil, "%\"Todo,InProgress\"%"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [[nil, "%\"Todo,InProgress\"%"], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 33ms (Views: 8.7ms | ActiveRecord: 10.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?page=1&per_page=" for ::1 at 2024-10-27 11:12:13 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 24ms (Views: 7.6ms | ActiveRecord: 1.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?search=%22Todo,Completed%22page=1&per_page=" for ::1 at 2024-10-27 11:12:34 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"search"=>"\"Todo,Completed\"page=1", "per_page"=>""}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL[0m  [[nil, "%\"Todo,Completed\"page=1%"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (1.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [[nil, "%\"Todo,Completed\"page=1%"], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 23ms (Views: 12.9ms | ActiveRecord: 2.1ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?page=1&per_page=" for ::1 at 2024-10-27 11:12:51 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 16ms (Views: 4.5ms | ActiveRecord: 1.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?search=%22Completed%22&page=1&per_page=" for ::1 at 2024-10-27 11:13:08 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"search"=>"\"Completed\"", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL[0m  [[nil, "%\"Completed\"%"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [[nil, "%\"Completed\"%"], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 20ms (Views: 8.6ms | ActiveRecord: 1.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?statuses=%22Completed%22&page=1&per_page=" for ::1 at 2024-10-27 11:13:43 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"statuses"=>"\"Completed\"", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."status" = $1 AND "tasks"."deleted_at" IS NULL[0m  [["status", "\"Completed\""]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."status" = $1 AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [["status", "\"Completed\""], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 21ms (Views: 6.2ms | ActiveRecord: 1.2ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?statuses=%22Complete%22&page=1&per_page=" for ::1 at 2024-10-27 11:14:13 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"statuses"=>"\"Complete\"", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."status" = $1 AND "tasks"."deleted_at" IS NULL[0m  [["status", "\"Complete\""]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."status" = $1 AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [["status", "\"Complete\""], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 16ms (Views: 4.0ms | ActiveRecord: 1.9ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?statuses=%22Completed%22&page=1&per_page=" for ::1 at 2024-10-27 11:14:26 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"statuses"=>"\"Completed\"", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."status" = $1 AND "tasks"."deleted_at" IS NULL[0m  [["status", "\"Completed\""]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.9ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."status" = $1 AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [["status", "\"Completed\""], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 27ms (Views: 5.2ms | ActiveRecord: 2.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?page=1&per_page=" for ::1 at 2024-10-27 11:15:41 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 17ms (Views: 6.1ms | ActiveRecord: 1.3ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?statuses=%22Completed%22&page=1&per_page=" for ::1 at 2024-10-27 11:15:56 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"statuses"=>"\"Completed\"", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."status" = $1 AND "tasks"."deleted_at" IS NULL[0m  [["status", "\"Completed\""]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.5ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."status" = $1 AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [["status", "\"Completed\""], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 18ms (Views: 5.6ms | ActiveRecord: 1.3ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?statuses=%22Todo%22&page=1&per_page=" for ::1 at 2024-10-27 11:20:20 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"statuses"=>"\"Todo\"", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."status" = $1 AND "tasks"."deleted_at" IS NULL[0m  [["status", "\"Todo\""]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."status" = $1 AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [["status", "\"Todo\""], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 19ms (Views: 5.5ms | ActiveRecord: 1.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?search=%27test%27&page=1&per_page=" for ::1 at 2024-10-27 11:20:56 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"search"=>"'test'", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL[0m  [[nil, "%'test'%"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [[nil, "%'test'%"], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 20ms (Views: 6.2ms | ActiveRecord: 1.8ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?search=%27test%27&page=1&per_page=" for ::1 at 2024-10-27 11:21:15 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"search"=>"'test'", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL[0m  [[nil, "%'test'%"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [[nil, "%'test'%"], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 14ms (Views: 3.5ms | ActiveRecord: 1.4ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?search=%27test%27&page=1&per_page=" for ::1 at 2024-10-27 11:27:56 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"search"=>"'test'", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL /* loading for inspect */ ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [[nil, "%'test'%"], ["LIMIT", 11], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+  [1m[36mTask Count (1.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL[0m  [[nil, "%'test'%"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [[nil, "%'test'%"], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 152631ms (Views: 3.9ms | ActiveRecord: 135.3ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?search=test&page=1&per_page=" for ::1 at 2024-10-27 11:30:52 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"search"=>"test", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL[0m  [[nil, "%test%"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [[nil, "%test%"], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 5100ms (Views: 16.8ms | ActiveRecord: 3.7ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/api/v1/tasks?statuses=Todo,InProgress&page=1&per_page=" for ::1 at 2024-10-27 11:39:30 -0400
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"statuses"=>"Todo,InProgress", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."status" IN ($1, $2) AND "tasks"."deleted_at" IS NULL[0m  [["status", "Todo"], ["status", "InProgress"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (0.8ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."status" IN ($1, $2) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $3 OFFSET $4[0m  [["status", "Todo"], ["status", "InProgress"], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 5847ms (Views: 7.4ms | ActiveRecord: 12.6ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/auth/login" for 172.19.0.1 at 2024-10-27 17:41:23 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (3.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 2 pending migrations:
+
+db/migrate/20241027002745_add_title_length_constraint_to_tasks.rb
+db/migrate/20241027050641_change_priorityin_tasks.rb
+
+
+):
+  
+activerecord (7.2.1.1) lib/active_record/migration.rb:756:in `check_pending_migrations'
+activerecord (7.2.1.1) lib/active_record/migration.rb:663:in `block (2 levels) in call'
+activesupport (7.2.1.1) lib/active_support/file_update_checker.rb:85:in `execute'
+activerecord (7.2.1.1) lib/active_record/migration.rb:668:in `block in call'
+activerecord (7.2.1.1) lib/active_record/migration.rb:660:in `synchronize'
+activerecord (7.2.1.1) lib/active_record/migration.rb:660:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/callbacks.rb:31:in `block in call'
+activesupport (7.2.1.1) lib/active_support/callbacks.rb:101:in `run_callbacks'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/callbacks.rb:30:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:31:in `call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:19:in `block in call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/show_exceptions.rb:32:in `call'
+railties (7.2.1.1) lib/rails/rack/logger.rb:41:in `call_app'
+railties (7.2.1.1) lib/rails/rack/logger.rb:29:in `call'
+sprockets-rails (3.5.2) lib/sprockets/rails/quiet_assets.rb:17:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/remote_ip.rb:96:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/request_id.rb:33:in `call'
+rack (3.1.8) lib/rack/method_override.rb:28:in `call'
+rack (3.1.8) lib/rack/runtime.rb:24:in `call'
+activesupport (7.2.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/server_timing.rb:61:in `block in call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/server_timing.rb:26:in `collect_events'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/server_timing.rb:60:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/executor.rb:16:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/static.rb:27:in `call'
+rack (3.1.8) lib/rack/sendfile.rb:114:in `call'
+actionpack (7.2.1.1) lib/action_dispatch/middleware/host_authorization.rb:143:in `call'
+rack-cors (2.0.2) lib/rack/cors.rb:102:in `call'
+railties (7.2.1.1) lib/rails/engine.rb:535:in `call'
+puma (6.4.3) lib/puma/configuration.rb:272:in `call'
+puma (6.4.3) lib/puma/request.rb:100:in `block in handle_request'
+puma (6.4.3) lib/puma/thread_pool.rb:378:in `with_force_shutdown'
+puma (6.4.3) lib/puma/request.rb:99:in `handle_request'
+puma (6.4.3) lib/puma/server.rb:464:in `process_client'
+puma (6.4.3) lib/puma/server.rb:245:in `block in run'
+puma (6.4.3) lib/puma/thread_pool.rb:155:in `block in spawn_thread'
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5320940893453301445)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.9ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1[0m  [[nil, "environment"]]
+Migrating to AddTitleLengthConstraintToTasks (20241027002745)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (34.9ms)[0m  [1m[35mALTER TABLE "tasks" ALTER COLUMN "title" TYPE character varying(128)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "tasks" ALTER COLUMN "description" TYPE text[0m
+  [1m[36mActiveRecord::SchemaMigration Create (5.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241027002745') RETURNING "version"[0m
+  [1m[36mTRANSACTION (6.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangePriorityinTasks (20241027050641)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (3.1ms)[0m  [1m[35mALTER TABLE "tasks" ALTER COLUMN "priority" TYPE character varying[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20241027050641') RETURNING "version"[0m
+  [1m[36mTRANSACTION (2.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT pg_advisory_unlock(5320940893453301445)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/auth/login" for 172.19.0.1 at 2024-10-27 17:42:53 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by AuthenticationController#login as */*
+  Parameters: {"email"=>"[FILTERED]", "password"=>"[FILTERED]", "authentication"=>{"email"=>"[FILTERED]", "password"=>"[FILTERED]"}}
+Can't verify CSRF token authenticity.
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "[FILTERED]"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:23:in `login'
+Completed 200 OK in 1794ms (Views: 0.4ms | ActiveRecord: 14.7ms (1 query, 0 cached) | GC: 14.5ms)
+
+
+Started GET "/api/v1/tasks/3" for 172.19.0.1 at 2024-10-27 17:43:59 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::V1::TasksController#show as */*
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Load (0.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:87:in `set_task'
+Completed 200 OK in 135ms (Views: 0.9ms | ActiveRecord: 2.7ms (2 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/api/v1/tasks?page=1&per_page=" for 172.19.0.1 at 2024-10-27 17:44:22 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (10.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:78:in `pagination_meta'
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:25:in `index'
+Completed 200 OK in 58ms (Views: 4.0ms | ActiveRecord: 11.1ms (3 queries, 0 cached) | GC: 0.1ms)
+
+
+Started GET "/api/v1/tasks?search=test&page=1&per_page=" for 172.19.0.1 at 2024-10-27 17:45:12 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"search"=>"test", "page"=>"1", "per_page"=>""}
+Completed 500 Internal Server Error in 111ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.5ms)
+
+
+  
+NameError (uninitialized constant ExceptionHandler::Unauthorized
+
+      rescue ExceptionHandler::Unauthorized => e
+                             ^^^^^^^^^^^^^^):
+
+Causes:
+NameError (uninitialized constant ExceptionHandler::Unauthorized
+
+      raise(ExceptionHandler::Unauthorized, "Invalid token")
+                            ^^^^^^^^^^^^^^)
+JWT::VerificationError (Signature verification failed)
+  
+app/controllers/application_controller.rb:17:in `rescue in authenticate_request'
+app/controllers/application_controller.rb:15:in `authenticate_request'
+Started GET "/api/v1/tasks?search=test&page=1&per_page=" for 172.19.0.1 at 2024-10-27 17:45:30 +0000
+Cannot render console from 172.19.0.1! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"search"=>"test", "page"=>"1", "per_page"=>""}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL[0m  [[nil, "%test%"]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:78:in `pagination_meta'
+  [1m[36mTask Load (0.3ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE (title ILIKE $1) AND "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $2 OFFSET $3[0m  [[nil, "%test%"], ["LIMIT", 25], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:25:in `index'

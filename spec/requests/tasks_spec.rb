@@ -3,7 +3,7 @@
 require 'swagger_helper'
 
 RSpec.describe 'Tasks API', type: :request do
-  path '/tasks' do
+  path 'api/v1/tasks' do
     get 'Retrieves all tasks' do
       response '200', 'tasks found' do
         run_test!

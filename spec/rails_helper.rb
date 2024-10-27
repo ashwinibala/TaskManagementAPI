@@ -63,4 +63,5 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.include Rswag::Api::Engine.routes.url_helpers
+  config.include FactoryBot::Syntax::Methods
 end
