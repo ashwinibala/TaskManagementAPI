@@ -16,7 +16,7 @@ services:
     environment:
       - DATABASE_URL=postgres://postgres:password@db:5432/taskmanagement_development
       - RAILS_ENV=development
-      - SECRET_KEY_BASE=dee768607abdd0d209297219a640ab53b9f705e8148a3b3c31d37d9d7539b81d40d79202d8cc4c8f04038a014cff23514b99afd1ad5ef2f3d823eed140271678
+      # - SECRET_KEY_BASE=ce7bac9a8fc03a557603c9c55584baa0e5634b120cb47a95e78789e8bd1583a96d05893fffe810d1f921eaa36b4b85bb660a1f8703514f2b08d57a0943e70d47
       - JWT_SECRET_FILE=/run/secrets/jwt_secret
     secrets:
       - jwt_secret
