@@ -14,9 +14,6 @@ RUN apt-get update -qq && \
     npm install -g yarn
 COPY . .
 
-# Read JWT_SECRET if using Docker secrets
-# RUN echo "JWT_SECRET=$(cat /run/secrets/jwt_secret)" >> /etc/environment  # If you're using secrets
-
 # Expose the application port
 EXPOSE 8080
 

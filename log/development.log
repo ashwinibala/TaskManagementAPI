@@ -8058,3 +8058,16 @@ Can't verify CSRF token authenticity.
 Completed 200 OK in 57ms (Views: 0.3ms | ActiveRecord: 17.6ms (4 queries, 1 cached) | GC: 0.0ms)
 
 
+Started GET "/api/v1/tasks?page=1&per_page=10" for ::1 at 2024-10-27 18:51:53 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Api::V1::TasksController#index as */*
+  Parameters: {"page"=>"1", "per_page"=>"10"}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:16:in `authenticate_request'
+  [1m[36mTask Count (1.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "tasks" WHERE "tasks"."deleted_at" IS NULL[0m
+  ↳ app/controllers/api/v1/tasks_controller.rb:79:in `pagination_meta'
+  [1m[36mTask Load (2.2ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."deleted_at" IS NULL ORDER BY "tasks"."updated_at" DESC LIMIT $1 OFFSET $2[0m  [["LIMIT", 10], ["OFFSET", 0]]
+  ↳ app/controllers/api/v1/tasks_controller.rb:26:in `index'
+Completed 200 OK in 541ms (Views: 67.5ms | ActiveRecord: 141.1ms (3 queries, 0 cached) | GC: 0.0ms)
+
+
