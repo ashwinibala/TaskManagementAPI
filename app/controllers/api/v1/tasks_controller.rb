@@ -24,7 +24,7 @@ module Api
           end
 
           render json: {
-            tasks: @tasks,
+            tasks: @tasks.as_json(except: [ :deleted_at, :deleted_by ]),
             meta: pagination_meta(@tasks)
           }
         rescue StandardError => e
@@ -34,7 +34,7 @@ module Api
 
       # GET /tasks/:id
       def show
-        render json: @task
+        render json: @task.as_json(except: [ :deleted_at, :deleted_by ])
       end
 
       # POST /tasks
@@ -44,7 +44,7 @@ module Api
         @task.created_by = user.name
 
         if @task.save
-          render json: @task, status: :created
+          render json: @task.as_json(except: [ :deleted_at, :deleted_by ]), status: :created
         else
           render_error_response("invalid_payload", "Request body is invalid or missing some fields", @task.errors)
         end
@@ -53,7 +53,7 @@ module Api
       # PUT /tasks/:id
       def update
         if @task.update(task_params)
-          render json: @task
+          render json: @task.as_json(except: [ :deleted_at, :deleted_by ])
         else
           render_error_response("invalid_payload", "Request body is invalid or missing some fields", @task.errors)
         end

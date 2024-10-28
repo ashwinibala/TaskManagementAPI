@@ -61,6 +61,13 @@ paths:
                     - Completed
                     - Cancelled
                   default: Backlog
+                priority:
+                  type: string
+                  enum:
+                    - Low
+                    - Medium
+                    - High
+                  default: Low
               required:
                 - title
       responses:
@@ -108,6 +115,20 @@ paths:
                   type: string
                 status:
                   type: string
+                  enum:
+                    - Backlog
+                    - Todo
+                    - InProgress
+                    - Completed
+                    - Cancelled
+                  default: Backlog
+                priority:
+                  type: string
+                  enum:
+                    - Low
+                    - Medium
+                    - High
+                  default: Low
       responses:
         '200':
           description: task updated
