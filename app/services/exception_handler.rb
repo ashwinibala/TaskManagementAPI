@@ -1,5 +1,3 @@
-# app/services/exception_handler.rb
-
 module ExceptionHandler
   def handle_unauthorized
     raise(ExceptionHandler::Unauthorized, Message.unauthorized)
