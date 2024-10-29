@@ -45,7 +45,7 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # PostgreSQL
-  gem "pg", "~> 1.2"
+  gem "pg", "~> 1.5"
 
   # CORS
   gem "rack-cors"
