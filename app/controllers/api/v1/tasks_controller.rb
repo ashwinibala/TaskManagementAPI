@@ -16,6 +16,7 @@ module Api
         begin
           tasks_query = Task
           tasks_query = tasks_query.where(status: params[:statuses].split(",")) if params[:statuses].present?
+          tasks_query = tasks_query.where(priority: params[:priorities].split(",")) if params[:priorities].present?
           tasks_query = tasks_query.where("title ILIKE ?", "%#{params[:search]}%") if params[:search].present?
           if params[:include_deleted] == "true"
             @tasks = tasks_query.order(updated_at: :desc).page(params[:page]).per(params[:per_page] || 10)
